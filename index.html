@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lưu bút gửi hải sản</title>
+    <style>
+        @font-face {
+            font-family: 'Iciel Brittany Signature Regular';
+            src: url('fonts/IcielBrittanySignature-Regular.woff2') format('woff2'),
+                 url('fonts/IcielBrittanySignature-Regular.woff') format('woff'),
+                 url('fonts/iCielBrittanySignature-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            object-fit: cover;
+            filter: brightness(0.95);
+        }
+
+        #hello-kitty-element {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -999;
+            max-width: 250px;
+            width: 60%;
+            height: auto;
+            opacity: 0.6;
+        }
+
+        .container {
+            background-color: #FFF2EB;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: left;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-frames {
+            display: flex;
+            justify-content: space-around;
+            align-items: center; /* Căn các image-frame nếu chiều cao khác nhau */
+            margin-bottom: 25px;
+        }
+
+        .image-frame {
+            width: 45%;
+            aspect-ratio: 1 / 1;
+            background-color: #f0f0f0;
+            border-radius: 15px; /* Bo góc cho khung */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 0.9em; /* Dùng cho text nếu không có ảnh */
+            color: #555; /* Dùng cho text nếu không có ảnh */
+            overflow: hidden; /* Quan trọng để bo góc ảnh bên trong */
+            border: 2px solid #ddd;
+            /* padding: 10px;  Bỏ padding để ảnh tràn khung */
+            /* box-sizing: border-box; Bỏ nếu không có padding */
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Đảm bảo ảnh lấp đầy khung mà không bị méo */
+            /* border-radius: 13px; Bo góc cho ảnh, có thể bỏ nếu muốn ảnh vuông vức với khung đã bo */
+        }
+
+        .dear-text {
+            font-family: 'Iciel Brittany Signature Regular', cursive;
+            font-size: 1.8em;
+            font-weight: normal;
+            margin-bottom: 8px;
+            color: #AD1457;
+        }
+
+        .message-content {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #212121;
+        }
+
+        .signature-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .signature-description {
+            font-size: 0.9em;
+            font-style: italic;
+            color: #424242;
+            margin-bottom: 10px;
+        }
+
+        .signature-image {
+            width: 150px;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 8px;
+        }
+
+        .signature-name {
+            font-size: 1em;
+            font-weight: bold;
+            color: #212121;
+        }
+
+        @media (max-width: 480px) {
+            #video-background {
+                filter: brightness(0.9);
+            }
+            #hello-kitty-element {
+                max-width: 180px;
+                width: 50%;
+                opacity: 0.5;
+            }
+            .container {
+                padding: 15px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                background-color: #FFF2EB;
+            }
+            .image-frame {
+                font-size: 0.8em; /* Cho text nếu không có ảnh */
+            }
+            .dear-text {
+                font-size: 1.5em;
+                margin-bottom: 6px;
+            }
+            .message-content {
+                font-size: 0.95em;
+            }
+            .signature-image {
+                width: 120px;
+            }
+            .signature-section {
+                margin-top: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay loop muted playsinline id="video-background">
+        <source src="vid.mp4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ thẻ video.
+    </video>
+
+    <img id="hello-kitty-element" src="hello_kitty.png" alt="Hello Kitty Background">
+
+    <div class="container">
+        <div class="image-frames">
+            <div class="image-frame">
+                <img src="pic1.png" alt="Ảnh kỷ niệm 1">
+            </div>
+            <div class="image-frame">
+                chờ ảnh 26/5 hihi
+            </div>
+        </div>
+
+        <div class="dear-text" id="dearName">
+            dear hải sản,
+        </div>
+
+        <div class="message-content" id="messageContent">dm 3 năm r cơ à
+Uh đ ngờ t chơi với m tận 3 năm r ý. Dm k ai ngờ là tận từ lúc m còn trông lành tính vcl đến tận bây giờ là hết mẹ c3 vca trông gang vcl r =)))). Ê nh lúc t thấy m kiểu bựa vcloz bựa?? Kiểu nh cái t đ nghĩ dc là 1 đứa như m nói dc xong t kiểu ??? vcc con này bị điên r à đụ má. Xong dm m toàn chửi t cơ mà dm chửi kiểu vui vui hài vl =))). Cx cx đi =))). Dm nghĩ sau đ dc cùng lớp nữa cũng buồn, nên là dmmm có chết cũng đ đc từ bỏ tình bạn này nhs để có gì sau t còn nhờ m bao nuôi nhs hihi. ờm thra t muốn nói nữa nma t mat goc tviet hihi. DCMMM M PHẢI THỦ KHOA ULIS CHO T NHỚ CHƯA??!? hihi chắc v thoi, dù sau này m có buồn cgi cũng ph kể cho t nhs ❤️‍🩹. T quý m nhiều hơn ngày hqua và ít hơn ngày mai hihi
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-description">
+                kẻ điên m gặp hồi c3
+            </div>
+            <img src="image_0cc929.png" alt="Chữ ký Khôi" class="signature-image">
+            <div class="signature-name">
+                Nguyễn Cảnh Khôi
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript functions (nếu cần)
+    </script>
+
+</body>
+</html>
